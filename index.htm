@@ -65,15 +65,17 @@
     <div class="swiper-container gallery-top">
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="background-image:url(http://valo.local/images/kitchen.jpg)">
-                <div class="wrap_box_controler">
-                    <div class="onoffswitch">
+                <div class="location_of_box_controller"></div>
+                <!-- -- 
+                <div class="wrap_box_controler" style="dispaly:block">
+                    <div class="onoffswitch" style="margin:0 auto">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                         <label class="onoffswitch-label" for="myonoffswitch">
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                         </label>
                     </div>
-                    <!-- start slider -->
+                    
                     
                     <p>
                       <label for="amount">Value:</label>
@@ -81,8 +83,8 @@
                     </p>
                     <div id="slider"></div>
 
-                    <!-- endslider -->
                 </div>
+                -->
                 <div style="position:absolute; bottom:10px; left:5%;width:10%;">
                     <div data-floor="1" data-room="kitchen" data-deviceId="001" onclick="clickLamp(this)">
                         <div  style="background:url(http://valo.local/icon/sprite.png) 0 0 ;width:40px;height:60px;cursor:pointer"> &nbsp;</div>
@@ -126,13 +128,43 @@
     <script src="vender/jquery-ui/jquery-1.10.2.js"></script>
     <script src="vender/jquery-ui/jquery-ui.js"></script>
 
+    <script>
+    //slider controler
+    $(function() {
+        init_scoll_slider = function (){
+            $( "#slider" ).slider({
+              value:100,
+              min: 0,
+              max: 255,
+              slide: function( event, ui ) {
+                $( "#amount" ).val( "$" + ui.value );
+              }
+            });
+            $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+        }
+
+    });
+    </script>
+
     <!-- Initialize Swiper -->
     <script>
+    function disableSwipe(s){  
+        s.lockSwipes();
+        console.log('disableSwipe');
+    }
+        
+    function enableSwipe(s){   
+        s.unlockSwipes();
+        console.log('enableSwipe');
+    }
+
     var galleryTop = new Swiper('.gallery-top', {
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
-        spaceBetween: 10,
+        spaceBetween: 10
     });
+
+    
     var galleryThumbs = new Swiper('.gallery-thumbs', {
         spaceBetween: 10,
         centeredSlides: true,
@@ -149,7 +181,20 @@
         alert('tiiitvi');
     }
 
-    function clickLamp(data){
+
+    //load controler on/off
+    function loadControler(name, trangthai, slider = false, slider_value = 0 ){
+        alert(name, trangthai);
+    }
+
+    function clickLamp(){
+        //loadControler('lamp'+ 'ddd');
+        $('.location_of_box_controller').append('<div class="wrap_box_controler" style="dispaly:block"> <div class="onoffswitch" style="margin:0 auto"> <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked> <label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label> </div> <p> <label for="amount">Value:</label> <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> </p> <div id="slider"></div> </div>');
+        init_scoll_slider();
+    }
+
+    function clickLampSEXX(data){
+
         var $this = $(data);
         $floor  = $this.data('floor');
         $room  = $this.data('room');
@@ -171,18 +216,30 @@
     </script>
 
 
+
+
     <script>
-    $(function() {
-      $( "#slider" ).slider({
-        value:100,
-        min: 0,
-        max: 255,
-        slide: function( event, ui ) {
-          $( "#amount" ).val( "$" + ui.value );
-        }
-      });
-      $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+    //style for control
+        var slider_width = galleryTop.width;
+        var slider_height = galleryTop.height;
+        var top_box_controller = slider_height/2 - $('.wrap_box_controler').height()/2-100;
+        var left_box_controller = slider_width/2 - $('.wrap_box_controler').width()/2;
+        $('.wrap_box_controler').css({'top':top_box_controller+'px', 'left': left_box_controller+'px'});
+    //style for control
+
+    //disable swipe in click box controler
+    $('.wrap_box_controler').click(function(){
+        console.log('click event');
+        enableSwipe(galleryTop);
     });
+    $('.wrap_box_controler').mousedown(function(){
+        console.log('mousedown');
+        disableSwipe(galleryTop);
+    });
+    $('.wrap_box_controler').mouseup(function(){
+        enableSwipe(galleryTop);
+    });
+       
     </script>
 </body>
 </html>
