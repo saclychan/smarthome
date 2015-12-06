@@ -5,89 +5,52 @@
     <title>Swiper demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="vender/Swiper/dist/css/swiper.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/vender/Swiper/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="/vender/rangeslider.js/rangeslider.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!--<link rel="stylesheet" href="vender/jquery-ui/jquery-ui.css">-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 
     <!-- Demo styles -->
     <style>
-    html, body {
-        position: relative;
-        height: 100%;
-    }
-    body {
-        background: #000;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color:#000;
-        margin: 0;
-        padding: 0;
-    }
-    .swiper-container {
-        width: 100%;
-        height: 300px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .swiper-slide {
-        background-size: cover;
-        background-position: center;
-    }
-    .gallery-top {
-        height: 80%;
-        width: 100%;
-    }
-    .gallery-thumbs ,.devices{
-        height: 20%;
-        box-sizing: border-box;
-        padding: 10px 0;
-    }
-    .devices .swiper-slide{
-        width: 1%;
-        height: 100%;
-        opacity: 0.4;
-    }
-    .devices .swiper-slide,
-    .gallery-thumbs .swiper-slide {
-        width: 25%;
-        height: 100%;
-        opacity: 1;
-    }
-    .gallery-thumbs .swiper-slide-active {
-        opacity: 1;
-    }
-    
+
+
     </style>
 </head>
 <body>
+    <div class="center" >
+        <div>
+            <div class="wrap_box_controler" style="dispaly:block">
+                  <div class="onoffswitch" style="margin:15px auto">
+                      <input onchange="alert(this.checked)" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                      <label class="onoffswitch-label" for="myonoffswitch">
+                          <span class="onoffswitch-inner"></span>
+                          <span class="onoffswitch-switch"></span>
+                      </label>
+                  </div>
+                  <input onchange="alert(this.value)" type="range" data-orientation="horizontal">
+                  <div >
+                  <div class="output" style="font-size:15px; color:#F00;text-align:center;padding:10px"></div>
+                  </div>
+            </div>   
+        </div>
+    </div>
+
+
+
+    
     <!-- Swiper -->
     <div class="swiper-container gallery-top">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(http://valo.local/images/kitchen.jpg)">
+            <div class="swiper-slide" style="background-image:url(/images/kitchen.jpg)">
                 <div class="location_of_box_controller"></div>
-                <!-- -- 
-                <div class="wrap_box_controler" style="dispaly:block">
-                    <div class="onoffswitch" style="margin:0 auto">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
-                    </div>
-                    
-                    
-                    <p>
-                      <label for="amount">Value:</label>
-                      <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    </p>
-                    <div id="slider"></div>
+               
 
-                </div>
-                -->
+                
+
                 <div style="position:absolute; bottom:10px; left:5%;width:10%;">
                     <div data-floor="1" data-room="kitchen" data-deviceId="001" onclick="clickLamp(this)">
-                        <div  style="background:url(http://valo.local/icon/sprite.png) 0 0 ;width:40px;height:60px;cursor:pointer"> &nbsp;</div>
+                        <div  style="background:url(/icon/sprite.png) 0 0 ;width:40px;height:60px;cursor:pointer"> &nbsp;</div>
                     </div>
                 </div>  
 
@@ -100,12 +63,12 @@
 
             </div>
             <!-- item 2 -->
-            <div class="swiper-slide" style="background-image:url(http://valo.local/images/living-room.jpg)">
+            <div class="swiper-slide" style="background-image:url(/images/living-room.jpg)">
                 
                 <div class="swiper-container devices">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" style="background-image:url(http://valo.local/icon/lamp-512.png)"></div>
-                        <div class="swiper-slide" style="background-image:url(http://valo.local/icon/tivi.png)"></div>
+                        <div class="swiper-slide" style="background-image:url(/icon/lamp-512.png)"></div>
+                        <div class="swiper-slide" style="background-image:url(/icon/tivi.png)"></div>
                     </div>
                 </div>
 
@@ -117,64 +80,27 @@
     </div>
     <div class="swiper-container gallery-thumbs">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(http://valo.local/images/kitchen.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(http://valo.local/images/living-room.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(/images/kitchen.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(/images/living-room.jpg)"></div>
         </div>
     </div>
     
     <div id="result">x</div>
     <!-- Swiper JS -->
-    <script src="vender/Swiper/dist/js/swiper.min.js"></script>
-    <script src="vender/jquery-ui/jquery-1.10.2.js"></script>
-    <script src="vender/jquery-ui/jquery-ui.js"></script>
+    <script src="/vender/Swiper/dist/js/swiper.min.js"></script>
+    <script src="/vender/jquery-ui/jquery-1.10.2.js"></script>
+    <!--<script src="vender/jquery-ui/jquery-ui.js"></script>-->
+    <script src="/vender/rangeslider.js/rangeslider.min.js"></script>
+    
+    <script src="js/controler.js"></script>
+    <script src="js/index.js"></script>
 
-    <script>
-    //slider controler
-    $(function() {
-        init_scoll_slider = function (){
-            $( "#slider" ).slider({
-              value:100,
-              min: 0,
-              max: 255,
-              slide: function( event, ui ) {
-                $( "#amount" ).val( "$" + ui.value );
-              }
-            });
-            $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
-        }
 
-    });
-    </script>
 
     <!-- Initialize Swiper -->
     <script>
-    function disableSwipe(s){  
-        s.lockSwipes();
-        console.log('disableSwipe');
-    }
-        
-    function enableSwipe(s){   
-        s.unlockSwipes();
-        console.log('enableSwipe');
-    }
+    /*
 
-    var galleryTop = new Swiper('.gallery-top', {
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 10
-    });
-
-    
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-        spaceBetween: 10,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        touchRatio: 0.2,
-        slideToClickedSlide: true
-    });
-
-    galleryTop.params.control = galleryThumbs;
-    galleryThumbs.params.control = galleryTop;
     
 
     function clickTivi(){
@@ -183,14 +109,15 @@
 
 
     //load controler on/off
-    function loadControler(name, trangthai, slider = false, slider_value = 0 ){
+    function loadControler(name, trangthai, slider, slider_value ){
         alert(name, trangthai);
     }
 
     function clickLamp(){
         //loadControler('lamp'+ 'ddd');
-        $('.location_of_box_controller').append('<div class="wrap_box_controler" style="dispaly:block"> <div class="onoffswitch" style="margin:0 auto"> <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked> <label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label> </div> <p> <label for="amount">Value:</label> <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> </p> <div id="slider"></div> </div>');
+        $('.location_of_box_controller').append('<div class="wrap_box_controler" style="dispaly:block"> <div class="onoffswitch" style="margin:0 auto"> <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked> <label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label> </div> <p> <label for="amount">Value:</label> <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> </p> <div id="slider"></div> </div>  <input type="range">');
         init_scoll_slider();
+        set_box_controller_position();
     }
 
     function clickLampSEXX(data){
@@ -213,33 +140,32 @@
           }
         });
     }
+    */
     </script>
 
-
+    
 
 
     <script>
-    //style for control
-        var slider_width = galleryTop.width;
-        var slider_height = galleryTop.height;
-        var top_box_controller = slider_height/2 - $('.wrap_box_controler').height()/2-100;
-        var left_box_controller = slider_width/2 - $('.wrap_box_controler').width()/2;
-        $('.wrap_box_controler').css({'top':top_box_controller+'px', 'left': left_box_controller+'px'});
-    //style for control
-
-    //disable swipe in click box controler
-    $('.wrap_box_controler').click(function(){
-        console.log('click event');
-        enableSwipe(galleryTop);
-    });
-    $('.wrap_box_controler').mousedown(function(){
-        console.log('mousedown');
+    /*
+    $('.ui-slider-handle').on('touchstart', function(){
+        alert('xxx');
         disableSwipe(galleryTop);
     });
-    $('.wrap_box_controler').mouseup(function(){
+    var cx = document.getElementsByClassName('wrap_box_controler');
+    cx[0].addEventListener('touchstart', function(e) {
+        console.log('touchstart');
+        disableSwipe(galleryTop);
+
+    }, false);
+    document.addEventListener('touchend', function(e) {
+        console.log('touchend');
         enableSwipe(galleryTop);
-    });
-       
+
+    }, false);
+    
+    $( document ).ready( function(){alert('xxx')} )
+    */
     </script>
 </body>
 </html>
