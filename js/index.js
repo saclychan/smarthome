@@ -69,7 +69,7 @@ galleryThumbs.params.control = galleryTop;
 
 
 function triggerAction(position, value){
-    var deviceStatus =$( '#myonoffswitch' ).is(":checked" );
+    var deviceStatus = $( '#myonoffswitch' ).is(":checked" );
     var deviceId = $('#deviceId').val();
     $.ajax({
         method:'post',
@@ -78,10 +78,16 @@ function triggerAction(position, value){
             'value': value,
             'deviceStatus': deviceStatus,
             'deviceId': deviceId
-      },
-      success: function( data ) {
-        alert(data);
-      }
+        },
+        success: function( xhr, data ) {
+           var deviceId = getDeviceId(xhr);
+           var  value        = getValue(xhr);
+           var  deviceStatus = getDeviceStatus(xhr);
+           update_info_to_icon(deviceId, value,deviceStatus);
+        },
+        complete: function(xhr, data){
+        
+        }
     });
 }
 
@@ -91,6 +97,62 @@ function iconClick(base){
     var value = $this.data('value');
     var deviceid = $this.data('deviceid');
     var devicestatus = $this.data('devicestatus');
-
+    
+    /*update infomation to controler box*/
     $('#deviceId').val(deviceid);
+    $('#myonoffswitch')[0].checked = devicestatus;
+    $element.val(value).change();
 }
+
+/*loop all icon to detected icon( deviceId)*/
+function update_info_to_icon(deviceId, value,deviceStatus){
+    $('.icon').each(function(){
+        $t = $(this);
+        var deviceid = $t.data('deviceid');
+        if(deviceid == deviceId){
+            $t.data('value', value) ;
+            $t.data('deviceStatus', deviceStatus);
+        }
+    });
+}
+
+/*UPDATE INFO DATA TO ICON BTN AFTER RECEVED FROM SERVER*/
+function getAllFromResponse(str){
+    var xmlDoc = jQuery.parseXML(str);
+     $xml = $( xmlDoc ),
+     $title = $xml.find( "value" );
+     $deviceid = $xml.find( "deviceId" );
+     $devicestatus = $xml.find( "deviceStatus" );
+    var value = $title.text();
+    var deviceid = $deviceid.text();
+    var devicestatus = $devicestatus.text();
+    console.log('value '+value);
+    console.log('deviceid '+deviceid);
+    console.log('devicestatus '+devicestatus);
+}
+
+/*get deviceId from resonsive*/
+function getDeviceId(str){
+    var xmlDoc = jQuery.parseXML(str);
+    $xml = $( xmlDoc );  
+    $deviceid = $xml.find( "deviceId");
+    var deviceid = $deviceid.text();
+    return deviceid;
+}
+function getValue(str){
+    var xmlDoc = jQuery.parseXML(str);
+    $xml = $( xmlDoc );  
+    $value = $xml.find( "value");
+    var value = $value.text();
+    return value;
+}
+function getDeviceStatus(str){
+    var xmlDoc = jQuery.parseXML(str);
+    $xml = $( xmlDoc );  
+    $deviceStatus = $xml.find( "deviceStatus");
+    var deviceStatus = $deviceStatus.text();
+    return deviceStatus;
+}
+
+
+

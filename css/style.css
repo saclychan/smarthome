@@ -137,13 +137,14 @@
     
     .icon{
         float: left;
-        padding: 5px 0px;
+        padding: 10px 0px;
         height: 100px;
         cursor: pointer;
         /* height: 100px; */
         width: 10%;
         background-position: center;
         background-repeat: no-repeat;
+        background-size: 100%;
     }
 
     .icon.den {

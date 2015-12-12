@@ -21,7 +21,9 @@
     <div class="center" >
         <div>
             <div class="wrap_box_controler" style="dispaly:block">
-                    <input type="text" name="deviceId" id="deviceId">
+                    <div style="text-align:center">
+                        DeviceId:<input type="text" name="deviceId" id="deviceId">
+                    </div>
                     <div class="onoffswitch" style="margin:15px auto">
                         <input onchange="triggerAction()" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -89,77 +91,5 @@
     <script src="js/index.js"></script>
     <script src="js/listIcon.js"></script>
 
-
-
-    <!-- Initialize Swiper -->
-    <script>
-    /*
-
-    
-
-    function clickTivi(){
-        alert('tiiitvi');
-    }
-
-
-    //load controler on/off
-    function loadControler(name, trangthai, slider, slider_value ){
-        alert(name, trangthai);
-    }
-
-    function clickLamp(){
-        //loadControler('lamp'+ 'ddd');
-        $('.location_of_box_controller').append('<div class="wrap_box_controler" style="dispaly:block"> <div class="onoffswitch" style="margin:0 auto"> <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked> <label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label> </div> <p> <label for="amount">Value:</label> <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> </p> <div id="slider"></div> </div>  <input type="range">');
-        init_scoll_slider();
-        set_box_controller_position();
-    }
-
-    function clickLampSEXX(data){
-
-        var $this = $(data);
-        $floor  = $this.data('floor');
-        $room  = $this.data('room');
-        $deviceId  = $this.data('deviceId');
-
-        $.ajax({
-            method:'post',
-            url: "doit.php",
-            data: {
-            floor : $floor,
-            room : $room,
-            deviceId : $deviceId
-          },
-          success: function( data ) {
-            $( "#result" ).html( "<strong style='color:white'>" + data + "</strong> degrees" );
-          }
-        });
-    }
-    */
-    </script>
-
-    
-
-
-    <script>
-    /*
-    $('.ui-slider-handle').on('touchstart', function(){
-        alert('xxx');
-        disableSwipe(galleryTop);
-    });
-    var cx = document.getElementsByClassName('wrap_box_controler');
-    cx[0].addEventListener('touchstart', function(e) {
-        console.log('touchstart');
-        disableSwipe(galleryTop);
-
-    }, false);
-    document.addEventListener('touchend', function(e) {
-        console.log('touchend');
-        enableSwipe(galleryTop);
-
-    }, false);
-    
-    $( document ).ready( function(){alert('xxx')} )
-    */
-    </script>
 </body>
 </html>
