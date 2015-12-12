@@ -70,6 +70,7 @@ galleryThumbs.params.control = galleryTop;
 
 function triggerAction(position, value){
     var deviceStatus = $( '#myonoffswitch' ).is(":checked" );
+    //console.log('deviceStatus ', deviceStatus, 'type', typeof(deviceStatus));
     var deviceId = $('#deviceId').val();
     $.ajax({
         method:'post',
@@ -82,7 +83,8 @@ function triggerAction(position, value){
         success: function( xhr, data ) {
            var deviceId = getDeviceId(xhr);
            var  value        = getValue(xhr);
-           var  deviceStatus = getDeviceStatus(xhr);
+           var  deviceStatus = getDeviceStatus(xhr); //return string : 'true'/'false'
+           
            update_info_to_icon(deviceId, value,deviceStatus);
         },
         complete: function(xhr, data){
@@ -96,8 +98,8 @@ function iconClick(base){
     $this = $(base);
     var value = $this.data('value');
     var deviceid = $this.data('deviceid');
-    var devicestatus = $this.data('devicestatus');
-    
+    var devicestatus = $this.data('deviceStatus');
+    console.log('type cu devicestatus ', devicestatus, 'xxxme', typeof(devicestatus));
     /*update infomation to controler box*/
     $('#deviceId').val(deviceid);
     $('#myonoffswitch')[0].checked = devicestatus;
@@ -110,8 +112,16 @@ function update_info_to_icon(deviceId, value,deviceStatus){
         $t = $(this);
         var deviceid = $t.data('deviceid');
         if(deviceid == deviceId){
+            //update
             $t.data('value', value) ;
-            $t.data('deviceStatus', deviceStatus);
+            if(deviceStatus){
+                var StrdeviceStatus = 'true';
+            }else{
+                var StrdeviceStatus = 'false';
+            }
+                
+            $t.data('deviceStatus', StrdeviceStatus);
+            console.log($t.data());
         }
     });
 }
@@ -151,6 +161,7 @@ function getDeviceStatus(str){
     $xml = $( xmlDoc );  
     $deviceStatus = $xml.find( "deviceStatus");
     var deviceStatus = $deviceStatus.text();
+
     return deviceStatus;
 }
 
