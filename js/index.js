@@ -80,7 +80,7 @@ function triggerAction(position, value){
             'deviceId': deviceId
       },
       success: function( data ) {
-        $( "#result" ).html( "<strong style='color:white'>" + data + "</strong> degrees" );
+        alert(data);
       }
     });
 }
@@ -88,5 +88,9 @@ function triggerAction(position, value){
 
 function iconClick(base){
     $this = $(base);
-    console.log($this.data('value'));
+    var value = $this.data('value');
+    var deviceid = $this.data('deviceid');
+    var devicestatus = $this.data('devicestatus');
+
+    $('#deviceId').val(deviceid);
 }
