@@ -118,3 +118,40 @@
     
 
     /*xx*/
+
+
+    /* list icon */
+    .wrap_icon {
+        border: 1px solid red;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+    }
+    /* list icon */
+    
+    .icon{
+        float: left;
+        padding: 5px 10px;
+        height: 100px;
+        cursor: pointer;
+    }
+
+    .icon.den {
+        background: url('../icon/100x100/den100x100.png') no-repeat;
+        height: 100px;
+        width: 100px;
+    }
+
+    .icon.quat {
+        background: url('../icon/100x100/quat100x100.png') no-repeat;
+        height: 100px;
+        width: 100px;
+    }
+    
+    .icon.tivi {
+        background: url('../icon/100x100/tivi100x100.png') no-repeat;
+        height: 100px;
+        width: 100px;
+    }

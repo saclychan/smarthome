@@ -10,7 +10,8 @@ $element
     polyfill: false,
     onInit: function() {
       updateOutput($output[0], this.value);
-    }
+    },
+    onSlideEnd: function(position, value){triggerAction(position, value)}
   })
   .on('input', function() {
     updateOutput($output[0], this.value);
@@ -65,3 +66,27 @@ var galleryThumbs = new Swiper('.gallery-thumbs', {
 galleryTop.params.control = galleryThumbs;
 galleryThumbs.params.control = galleryTop;
 /*slider swiper*/
+
+
+function triggerAction(position, value){
+    var deviceStatus =$( '#myonoffswitch' ).is(":checked" );
+    var deviceId = $('#deviceId').val();
+    $.ajax({
+        method:'post',
+        url: "doit.php",
+        data: {
+            'value': value,
+            'deviceStatus': deviceStatus,
+            'deviceId': deviceId
+      },
+      success: function( data ) {
+        $( "#result" ).html( "<strong style='color:white'>" + data + "</strong> degrees" );
+      }
+    });
+}
+
+
+function iconClick(base){
+    $this = $(base);
+    console.log($this.data('value'));
+}
